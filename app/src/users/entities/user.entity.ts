@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import { UserFriend } from 'src/user-friends/entities/user-friend.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -11,6 +12,8 @@ export class User {
   @Column()
   surname: string;
 
-  @ManyToMany(() => User, (user) => user.friends)
-  friends: User[];
+  @OneToMany(() => UserFriend, (user_friend) => user_friend.user, {
+    eager: true,
+  })
+  friends: UserFriend[];
 }
