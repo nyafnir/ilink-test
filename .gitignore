@@ -19,3 +19,6 @@
 
 # Environment
 .env
+
+# Postgres
+pgdata/
