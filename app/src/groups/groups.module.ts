@@ -5,6 +5,8 @@ import { UsersModule } from 'src/users/users.module';
 import { Group } from './entities/group.entity';
 import { GroupsController } from './groups.controller';
 import { GroupsService } from './groups.service';
+import { ManageGroupsController } from './manage-groups.controller';
+import { ManageGroupsService } from './manage-groups.service';
 
 @Module({
   imports: [
@@ -12,7 +14,7 @@ import { GroupsService } from './groups.service';
     TypeOrmModule.forFeature([User]),
     UsersModule,
   ],
-  providers: [GroupsService],
-  controllers: [GroupsController],
+  providers: [GroupsService, ManageGroupsService],
+  controllers: [GroupsController, ManageGroupsController],
 })
 export class GroupsModule {}

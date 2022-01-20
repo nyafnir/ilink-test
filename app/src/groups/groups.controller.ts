@@ -8,12 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { GroupsService } from './groups.service';
-import {
-  CreateGroupDto,
-  UpdateGroupDto,
-  JoinGroupDto,
-  LeaveGroupDto,
-} from './dto';
+import { CreateGroupDto, UpdateGroupDto } from './dto';
 
 @Controller('groups')
 export class GroupsController {
@@ -42,15 +37,5 @@ export class GroupsController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.groupsService.remove(+id);
-  }
-
-  @Post('join')
-  join(@Body() joinGroupDto: JoinGroupDto) {
-    return this.groupsService.join(joinGroupDto);
-  }
-
-  @Delete('leave')
-  leave(@Body() leaveGroupDto: LeaveGroupDto) {
-    return this.groupsService.leave(leaveGroupDto);
   }
 }
