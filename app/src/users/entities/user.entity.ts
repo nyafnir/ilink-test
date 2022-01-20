@@ -1,10 +1,8 @@
 import { Group } from 'src/groups/entities/group.entity';
-import { UserFriend } from 'src/user-friends/entities/user-friend.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToMany,
   ManyToMany,
   JoinTable,
 } from 'typeorm';
@@ -20,10 +18,9 @@ export class User {
   @Column()
   surname: string;
 
-  @OneToMany(() => UserFriend, (user_friend) => user_friend.user, {
-    eager: true,
-  })
-  friends: UserFriend[];
+  @ManyToMany(() => User)
+  @JoinTable({ name: 'user_friends', joinColumn: { name: 'friend_id' } })
+  friends: User[];
 
   @ManyToMany(() => Group, (group) => group.users, {
     eager: true,
