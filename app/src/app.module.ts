@@ -3,6 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GroupsModule } from './groups/groups.module';
 import { UsersModule } from './users/users.module';
 import { FriendsModule } from './friends/friends.module';
+import { GraphQLModule } from '@nestjs/graphql';
+
+const isDevelopmentMode = process.env.NODE_ENV !== 'prod';
 
 @Module({
   imports: [
@@ -14,8 +17,14 @@ import { FriendsModule } from './friends/friends.module';
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
-      synchronize: process.env.NODE_ENV !== 'prod',
-      logging: process.env.NODE_ENV !== 'prod',
+      synchronize: isDevelopmentMode,
+      logging: isDevelopmentMode,
+    }),
+    GraphQLModule.forRoot({
+      debug: isDevelopmentMode,
+      playground: isDevelopmentMode,
+      autoSchemaFile: true,
+      sortSchema: true,
     }),
     GroupsModule,
     UsersModule,
