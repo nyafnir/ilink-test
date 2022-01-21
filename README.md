@@ -7,7 +7,7 @@
 - [x] ManyToMany: user имеют friends
 - [x] ManyToMany: user имеют groups
 - [x] PostgreSQL
-- [ ] PostgreSQL -> GraphQL
+- [x] PostgreSQL -> GraphQL
 - [ ] MongoDB
 - [ ] MongoDB -> GraphQL
 
