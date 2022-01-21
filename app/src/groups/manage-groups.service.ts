@@ -15,8 +15,10 @@ export class ManageGroupsService {
   ) {}
 
   async join(joinGroupDto: JoinGroupDto) {
-    const group = await this.groupsRepository.findOne(joinGroupDto.group_id);
-    const user = await this.usersRepository.findOne(joinGroupDto.user_id);
+    const group = await this.groupsRepository.findOneOrFail(
+      joinGroupDto.group_id,
+    );
+    const user = await this.usersRepository.findOneOrFail(joinGroupDto.user_id);
 
     if (user.groups == null) {
       user.groups = [group];
@@ -28,7 +30,9 @@ export class ManageGroupsService {
   }
 
   async leave(leaveGroupDto: LeaveGroupDto) {
-    const user = await this.usersRepository.findOne(leaveGroupDto.user_id);
+    const user = await this.usersRepository.findOneOrFail(
+      leaveGroupDto.user_id,
+    );
 
     user.groups = user.groups.filter(
       (group) => group.id !== leaveGroupDto.group_id,

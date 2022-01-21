@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, UpdateResult } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreateUserDto, UpdateUserDto } from './dto';
 import { User } from './entities/user.entity';
 
@@ -16,22 +16,21 @@ export class UsersService {
     return await this.usersRepository.save(entity);
   }
 
-  async findAll(): Promise<User[]> {
+  async findAll() {
     return await this.usersRepository.find();
   }
 
-  async findOne(id: number): Promise<User> {
-    return await this.usersRepository.findOne(id, { relations: ['friends'] });
+  async findOne(id: number) {
+    return await this.usersRepository.findOneOrFail(id, {
+      relations: ['friends'],
+    });
   }
 
-  async update(
-    id: number,
-    updateUserDto: UpdateUserDto,
-  ): Promise<UpdateResult> {
+  async update(id: number, updateUserDto: UpdateUserDto) {
     return await this.usersRepository.update(id, updateUserDto);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: number) {
     await this.usersRepository.delete(id);
   }
 }

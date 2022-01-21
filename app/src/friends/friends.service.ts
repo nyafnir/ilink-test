@@ -12,8 +12,10 @@ export class FriendsService {
   ) {}
 
   async add(addFriendDto: AddFriendDto) {
-    const user = await this.usersRepository.findOne(addFriendDto.user_id);
-    const friend = await this.usersRepository.findOne(addFriendDto.friend_id);
+    const user = await this.usersRepository.findOneOrFail(addFriendDto.user_id);
+    const friend = await this.usersRepository.findOneOrFail(
+      addFriendDto.friend_id,
+    );
 
     if (user.friends == null) {
       user.friends = [friend];
@@ -25,7 +27,9 @@ export class FriendsService {
   }
 
   async remove(removeFriendDto: RemoveFriendDto) {
-    const user = await this.usersRepository.findOne(removeFriendDto.user_id);
+    const user = await this.usersRepository.findOneOrFail(
+      removeFriendDto.user_id,
+    );
 
     user.friends = user.friends.filter(
       (friend) => friend.id !== removeFriendDto.friend_id,
