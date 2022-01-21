@@ -1,6 +1,6 @@
 {
   "name": "ilink-test",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "Простейший CRUD на Nest.js",
   "author": "nyafnir",
   "private": true,
