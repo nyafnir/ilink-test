@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { User } from 'src/users/entities/user.entity';
 import {
   Entity,
@@ -12,7 +12,7 @@ import {
 @ObjectType()
 export class Group {
   @PrimaryGeneratedColumn()
-  @Field()
+  @Field(() => Int)
   id: number;
 
   @Column()

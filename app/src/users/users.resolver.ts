@@ -22,15 +22,15 @@ export class UsersResolver {
     return this.usersService.findOne(id);
   }
 
-  @Mutation(() => User)
+  @Mutation(() => Boolean)
   updateUser(
     @Args('id', { type: () => Int }) id: number,
     @Args('updateUserDto') updateUserDto: UpdateUserDto,
   ) {
-    return this.usersService.update(id, updateUserDto);
+    return this.usersService.update(id, { ...updateUserDto });
   }
 
-  @Mutation(() => User)
+  @Mutation(() => Boolean)
   removeUser(@Args('id', { type: () => Int }) id: number) {
     return this.usersService.remove(id);
   }

@@ -22,15 +22,15 @@ export class GroupsResolver {
     return this.groupsService.findOne(id);
   }
 
-  @Mutation(() => Group)
+  @Mutation(() => Boolean)
   updateGroup(
     @Args('id', { type: () => Int }) id: number,
     @Args('updateGroupDto') updateGroupDto: UpdateGroupDto,
   ) {
-    return this.groupsService.update(id, updateGroupDto);
+    return this.groupsService.update(id, { ...updateGroupDto });
   }
 
-  @Mutation(() => Group)
+  @Mutation(() => Boolean)
   removeGroup(@Args('id', { type: () => Int }) id: number) {
     return this.groupsService.remove(id);
   }

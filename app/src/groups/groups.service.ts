@@ -25,10 +25,12 @@ export class GroupsService {
   }
 
   async update(id: number, updateGroupDto: UpdateGroupDto) {
-    return await this.groupsRepository.update(id, updateGroupDto);
+    const result = await this.groupsRepository.update(id, updateGroupDto);
+    return result.affected;
   }
 
   async remove(id: number) {
-    await this.groupsRepository.delete(id);
+    const result = await this.groupsRepository.delete(id);
+    return result.affected;
   }
 }

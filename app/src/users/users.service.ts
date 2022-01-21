@@ -27,10 +27,12 @@ export class UsersService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    return await this.usersRepository.update(id, updateUserDto);
+    const result = await this.usersRepository.update(id, updateUserDto);
+    return result.affected;
   }
 
   async remove(id: number) {
-    await this.usersRepository.delete(id);
+    const result = await this.usersRepository.delete(id);
+    return result.affected;
   }
 }
