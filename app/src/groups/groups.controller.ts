@@ -25,17 +25,17 @@ export class GroupsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.groupsService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.groupsService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGroupDto: UpdateGroupDto) {
-    return this.groupsService.update(+id, updateGroupDto);
+  update(@Param('id') id: number, @Body() updateGroupDto: UpdateGroupDto) {
+    return this.groupsService.update(id, updateGroupDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.groupsService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.groupsService.remove(id);
   }
 }
