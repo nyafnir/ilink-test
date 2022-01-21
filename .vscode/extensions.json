@@ -4,6 +4,7 @@
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "ms-azuretools.vscode-docker",
-        "formulahendry.docker-explorer"
+        "formulahendry.docker-explorer",
+        "cweijan.vscode-database-client2"
     ]
 }
