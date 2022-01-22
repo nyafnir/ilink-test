@@ -1,36 +1,34 @@
+import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InjectModel } from '@nestjs/mongoose';
 import { CreateGroupDto, UpdateGroupDto } from './dto';
-import { Group } from './entities/group.entity';
+import { Group, GroupDocument } from './schemas/group.schema';
 
 @Injectable()
 export class GroupsService {
   constructor(
-    @InjectRepository(Group)
-    private groupsRepository: Repository<Group>,
+    @InjectModel(Group.name)
+    private groupModel: Model<GroupDocument>,
   ) {}
 
   async create(createGroupDto: CreateGroupDto) {
-    const entity = this.groupsRepository.create(createGroupDto);
-    return await this.groupsRepository.save(entity);
+    const entity = new this.groupModel(createGroupDto);
+    return await entity.save();
   }
 
   async findAll() {
-    return await this.groupsRepository.find();
+    return await this.groupModel.find().exec();
   }
 
-  async findOne(id: number) {
-    return await this.groupsRepository.findOneOrFail(id);
+  async findOne(_id: string) {
+    return await this.groupModel.findById(_id).exec();
   }
 
-  async update(id: number, updateGroupDto: UpdateGroupDto) {
-    const result = await this.groupsRepository.update(id, updateGroupDto);
-    return result.affected;
+  async update(_id: string, updateGroupDto: UpdateGroupDto) {
+    return await this.groupModel.findByIdAndUpdate(_id, updateGroupDto).exec();
   }
 
-  async remove(id: number) {
-    const result = await this.groupsRepository.delete(id);
-    return result.affected;
+  async remove(_id: string) {
+    return await this.groupModel.findByIdAndDelete(_id).exec();
   }
 }

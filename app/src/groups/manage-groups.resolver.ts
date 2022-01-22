@@ -1,5 +1,5 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { User } from 'src/users/entities/user.entity';
+import { User } from 'src/users/schemas/user.schema';
 import { JoinGroupDto, LeaveGroupDto } from './dto';
 import { ManageGroupsService } from './manage-groups.service';
 

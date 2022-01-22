@@ -24,18 +24,18 @@ export class GroupsController {
     return this.groupsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.groupsService.findOne(id);
+  @Get(':_id')
+  findOne(@Param('_id') _id: string) {
+    return this.groupsService.findOne(_id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: number, @Body() updateGroupDto: UpdateGroupDto) {
-    return this.groupsService.update(id, updateGroupDto);
+  @Patch(':_id')
+  update(@Param('_id') _id: string, @Body() updateGroupDto: UpdateGroupDto) {
+    return this.groupsService.update(_id, updateGroupDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: number) {
-    return this.groupsService.remove(id);
+  @Delete(':_id')
+  remove(@Param('_id') _id: string) {
+    return this.groupsService.remove(_id);
   }
 }
