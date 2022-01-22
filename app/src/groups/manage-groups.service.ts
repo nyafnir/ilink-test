@@ -1,43 +1,41 @@
+import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/users/entities/user.entity';
-import { Repository } from 'typeorm';
+import { InjectModel } from '@nestjs/mongoose';
+import { User, UserDocument } from 'src/users/schemas/user.schema';
 import { JoinGroupDto, LeaveGroupDto } from './dto';
-import { Group } from './entities/group.entity';
+import { Group, GroupDocument } from './schemas/group.schema';
 
 @Injectable()
 export class ManageGroupsService {
   constructor(
-    @InjectRepository(Group)
-    private groupsRepository: Repository<Group>,
-    @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    @InjectModel(Group.name)
+    private groupModel: Model<GroupDocument>,
+    @InjectModel(User.name)
+    private userModel: Model<UserDocument>,
   ) {}
 
   async join(joinGroupDto: JoinGroupDto) {
-    const group = await this.groupsRepository.findOneOrFail(
-      joinGroupDto.group_id,
-    );
-    const user = await this.usersRepository.findOneOrFail(joinGroupDto.user_id);
+    const group = await this.groupModel.findById(joinGroupDto.group_id).exec();
+    const user = await this.userModel.findById(joinGroupDto.user_id).exec();
 
-    if (user.groups == null) {
-      user.groups = [group];
-    } else {
-      user.groups.push(group);
-    }
+    group.users.push(user);
+    user.groups.push(group);
 
-    return await this.usersRepository.save(user);
+    await group.save();
+    return await user.save();
   }
 
   async leave(leaveGroupDto: LeaveGroupDto) {
-    const user = await this.usersRepository.findOneOrFail(
-      leaveGroupDto.user_id,
-    );
+    const group = await this.groupModel.findById(leaveGroupDto.group_id).exec();
+    const user = await this.userModel.findById(leaveGroupDto.user_id).exec();
 
-    user.groups = user.groups.filter(
-      (group) => group.id !== leaveGroupDto.group_id,
-    );
+    const userIndex = group.users.indexOf(user._id);
+    group.users.splice(userIndex, 1);
 
-    return await this.usersRepository.save(user);
+    const groupIndex = user.groups.indexOf(group._id);
+    user.groups.splice(groupIndex, 1);
+
+    await group.save();
+    return await user.save();
   }
 }

@@ -24,18 +24,18 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.usersService.findOne(id);
+  @Get(':_id')
+  findOne(@Param('_id') _id: string) {
+    return this.usersService.findOne(_id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(id, updateUserDto);
+  @Patch(':_id')
+  update(@Param('_id') _id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.update(_id, updateUserDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: number) {
-    return this.usersService.remove(id);
+  @Delete(':_id')
+  remove(@Param('_id') _id: string) {
+    return this.usersService.remove(_id);
   }
 }

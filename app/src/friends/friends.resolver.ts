@@ -1,5 +1,5 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { User } from 'src/users/entities/user.entity';
+import { User } from 'src/users/schemas/user.schema';
 import { AddFriendDto, RemoveFriendDto } from './dto';
 import { FriendsService } from './friends.service';
 
