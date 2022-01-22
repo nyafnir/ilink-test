@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "postgres",
+			"name": "mongodb-api",
 			"item": [
 				{
 					"name": "users",
@@ -60,13 +60,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/users/1",
+									"raw": "{{url}}/users/61eb4c7d07e8d8dfa833582c",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"users",
-										"1"
+										"61eb4c7d07e8d8dfa833582c"
 									]
 								}
 							},
@@ -79,7 +79,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"surname\": \"HiddenSurname\"\r\n}",
+									"raw": "{\r\n    \"firstname\": \"Amanda\",\r\n    \"surname\": \"HiddenSurname\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -87,13 +87,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/users/1",
+									"raw": "{{url}}/users/61eb4c5207e8d8dfa8335829",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"users",
-										"1"
+										"61eb4c5207e8d8dfa8335829"
 									]
 								}
 							},
@@ -105,13 +105,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/users/1",
+									"raw": "{{url}}/users/61eb3e8171e7175ad054d453",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"users",
-										"1"
+										"61eb3e8171e7175ad054d453"
 									]
 								}
 							},
@@ -129,7 +129,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"user_id\": 1,\r\n    \"friend_id\": 2\r\n}",
+									"raw": "{\r\n    \"user_id\": \"61eb4c7d07e8d8dfa833582c\",\r\n    \"friend_id\": \"61eb4c5207e8d8dfa8335829\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -155,7 +155,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"user_id\": 1,\r\n    \"friend_id\": 3\r\n}",
+									"raw": "{\r\n    \"user_id\": \"61eb4c7d07e8d8dfa833582c\",\r\n    \"friend_id\": \"61eb4c5207e8d8dfa8335829\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -228,13 +228,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/groups/1",
+									"raw": "{{url}}/groups/61eb4a3b55d8c3f302cbbf1b",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"groups",
-										"1"
+										"61eb4a3b55d8c3f302cbbf1b"
 									]
 								}
 							},
@@ -255,13 +255,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/groups/1",
+									"raw": "{{url}}/groups/61eb4c9307e8d8dfa8335831",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"groups",
-										"1"
+										"61eb4c9307e8d8dfa8335831"
 									]
 								}
 							},
@@ -297,7 +297,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"user_id\": 1,\r\n    \"group_id\": 1\r\n}",
+									"raw": "{\r\n    \"user_id\": \"61eb4c7d07e8d8dfa833582c\",\r\n    \"group_id\": \"61eb4c9307e8d8dfa8335831\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -325,7 +325,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"user_id\": 1,\r\n    \"group_id\": 1\r\n}",
+									"raw": "{\r\n    \"user_id\": \"61eb4c7d07e8d8dfa833582c\",\r\n    \"group_id\": \"61eb4c9307e8d8dfa8335831\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -351,7 +351,7 @@
 			]
 		},
 		{
-			"name": "graphql",
+			"name": "mongodb-graphql",
 			"item": [
 				{
 					"name": "users",
@@ -364,7 +364,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\r\n    createUser (createUserDto: {\r\n        firstname: \"June\"    \r\n        surname: \"Hellen\",\r\n    }) { \r\n        firstname \r\n    }\r\n}",
+										"query": "mutation {\r\n    createUser (createUserDto: {\r\n        firstname: \"June\"    \r\n        surname: \"Hellen\",\r\n    }) { \r\n        _id,\r\n        firstname \r\n    }\r\n}",
 										"variables": ""
 									}
 								},
@@ -388,7 +388,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "query {\r\n    users { \r\n        id,\r\n        surname\r\n    }\r\n}",
+										"query": "query {\r\n    users { \r\n        _id,\r\n        firstname,\r\n        surname\r\n    }\r\n}",
 										"variables": ""
 									}
 								},
@@ -412,7 +412,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "query {\r\n    user (id: 1) { \r\n        firstname, \r\n        friends { \r\n            surname \r\n        } \t\r\n    }\r\n}",
+										"query": "query {\r\n    user (_id: \"61eb4c5207e8d8dfa8335829\") { \r\n        firstname, \r\n        friends { \r\n            _id \r\n        } \t\r\n    }\r\n}",
 										"variables": ""
 									}
 								},
@@ -436,7 +436,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\r\n    updateUser (id: 5, updateUserDto: {\r\n        firstname: \"Julie\"\r\n    })\r\n}",
+										"query": "mutation {\r\n    updateUser (_id: \"61eb4c5207e8d8dfa8335829\", updateUserDto: {\r\n        firstname: \"Julie\"\r\n    }) {\r\n        _id,\r\n        surname\r\n    }\r\n}",
 										"variables": ""
 									}
 								},
@@ -460,7 +460,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\r\n    removeUser (id: 5)\r\n}",
+										"query": "mutation {\r\n    removeUser (_id: \"61eb65d0eb4eacd02cde0b79\") { _id }\r\n}",
 										"variables": ""
 									}
 								},
@@ -489,7 +489,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\r\n    addFriend(addFriendDto: {\r\n        user_id: 1, \r\n        friend_id: 4\r\n    }) {\r\n        surname,\r\n        friends {\r\n            surname\r\n        }\r\n    }\r\n}",
+										"query": "mutation {\r\n    addFriend(addFriendDto: {\r\n        user_id: \"61eb4c5207e8d8dfa8335829\", \r\n        friend_id: \"61eb4c7d07e8d8dfa833582c\"\r\n    }) {\r\n        surname,\r\n        friends {\r\n            _id\r\n        }\r\n    }\r\n}",
 										"variables": ""
 									}
 								},
@@ -513,7 +513,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\r\n    removeFriend(removeFriendDto: {\r\n        user_id: 1, \r\n        friend_id: 4\r\n    }){\r\n        surname,\r\n        friends {\r\n            surname\r\n        }\r\n    }\r\n}",
+										"query": "mutation {\r\n    removeFriend(removeFriendDto: {\r\n        user_id: \"61eb4c5207e8d8dfa8335829\", \r\n        friend_id: \"61eb4c7d07e8d8dfa833582c\"\r\n    }){\r\n        surname,\r\n        friends {\r\n            _id\r\n        }\r\n    }\r\n}",
 										"variables": ""
 									}
 								},
@@ -542,7 +542,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\r\n    createGroup (createGroupDto: {\r\n      name: \"Фотографы\"\r\n    }) { \r\n        id \r\n    }\r\n}",
+										"query": "mutation {\r\n    createGroup (createGroupDto: {\r\n      name: \"Фотографы\"\r\n    }) { \r\n        _id,\r\n        name\r\n    }\r\n}",
 										"variables": ""
 									}
 								},
@@ -566,7 +566,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "query {\r\n    groups {\r\n        id,\r\n        name\r\n    }\r\n}",
+										"query": "query {\r\n    groups {\r\n        _id,\r\n        name\r\n    }\r\n}",
 										"variables": ""
 									}
 								},
@@ -590,7 +590,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "query {\r\n    group (id: 2) {\r\n        name\r\n    }\r\n}",
+										"query": "query {\r\n    group (_id: \"61eb4c9307e8d8dfa8335831\") {\r\n        name,\r\n        users {\r\n            _id\r\n        }\r\n    }\r\n}",
 										"variables": ""
 									}
 								},
@@ -614,7 +614,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\r\n    updateGroup (id: 3, updateGroupDto: {\r\n        name: \"Съёмочная группа\"\r\n    })\r\n}",
+										"query": "mutation {\r\n    updateGroup (\r\n        _id: \"61eb4c9307e8d8dfa8335831\", \r\n        updateGroupDto: {\r\n            name: \"Съёмочная группа\"\r\n        }\r\n    ) {\r\n        _id,\r\n        name\r\n    }\r\n}",
 										"variables": ""
 									}
 								},
@@ -638,7 +638,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\r\n    removeGroup (id: 3)\r\n}",
+										"query": "mutation {\r\n    removeGroup (_id: \"61eb4c9307e8d8dfa833582f\") {\r\n        _id\r\n    }\r\n}",
 										"variables": ""
 									}
 								},
@@ -667,7 +667,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\r\n    joinGroup(joinGroupDto: { group_id: 2, user_id: 4 }) {\r\n        surname\r\n        groups {\r\n            name\r\n        }\r\n    }\r\n}",
+										"query": "mutation {\r\n    joinGroup(\r\n        joinGroupDto: { \r\n            group_id: \"61eb4c9307e8d8dfa8335831\", \r\n            user_id: \"61eb4c5207e8d8dfa8335829\" \r\n        }\r\n    ) {\r\n        surname\r\n        groups {\r\n            name\r\n        }\r\n    }\r\n}",
 										"variables": ""
 									}
 								},
@@ -691,7 +691,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\r\n    leaveGroup(leaveGroupDto: { group_id: 2, user_id: 4 }) {\r\n        surname\r\n        groups {\r\n            name\r\n        }\r\n    }\r\n}",
+										"query": "mutation {\r\n    leaveGroup(leaveGroupDto: { \r\n            group_id: \"61eb4c9307e8d8dfa8335831\", \r\n            user_id: \"61eb4c5207e8d8dfa8335829\" \r\n        }\r\n    ) {\r\n        surname\r\n        groups {\r\n            name\r\n        }\r\n    }\r\n}",
 										"variables": ""
 									}
 								},
