@@ -1,17 +1,4 @@
-## Описание
-
-Тестовое задание от I-Link:
-
-- [x] Docker-изация с multi-stage (dev и prod)
-- [x] CRUD: users и groups
-- [x] ManyToMany: user имеют friends
-- [x] ManyToMany: user имеют groups
-- [x] PostgreSQL
-- [x] PostgreSQL -> GraphQL
-- [ ] MongoDB
-- [ ] MongoDB -> GraphQL
-
-## Учебная задача
+## Тестовое задание от I-Link
 
 Нужно сделать на [Nest.js](https://github.com/nestjs/nest) простейший круд.
 
@@ -23,6 +10,16 @@
 Также у пользователей должно быть поле friends, в котором содержатся объекты user.
 
 Нужно сначала сделать REST, а потом перенести тоже самое на GraphQL.
+
+## Процесс выполнения 
+
+- [x] Docker-изация с multi-stage (dev и prod)
+- [x] CRUD: users и groups
+- [x] ManyToMany: user имеют friends
+- [x] ManyToMany: user имеют groups
+- [x] PostgreSQL
+- [x] PostgreSQL -> GraphQL
+- [x] MongoDB -> GraphQL
 
 ## Установка, запуск и тесты
 
