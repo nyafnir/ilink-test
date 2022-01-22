@@ -20,5 +20,5 @@
 # Environment
 .env
 
-# Postgres
-pgdata/
+# Mongo
+mgdata/
