@@ -35,6 +35,6 @@ RUN npm ci --only=prod
 COPY . .
 
 # копируем компилированный код
-COPY --from=development /usr/src/app/dist ./dist
+COPY --from=dev /usr/src/app/dist ./dist
 
 CMD ["node", "dist/main"]
